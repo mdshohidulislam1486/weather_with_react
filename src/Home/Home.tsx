@@ -8,11 +8,10 @@ const Home = () => {
 
 
   return (
-    <div>
-        <Container>
-             <Typography sx={{fontWeight:600, textAlign:'center', py:3}} variant='h2' component='h2'>Country Detail </Typography>
-             <Typography sx={{textAlign:'center'}} variant='body1' component='body'>We made it easy for you to know more about your favorite countries!!!</Typography>
-
+    <>
+       <Container>
+            <Typography sx={{fontWeight:600, textAlign:'center', py:3}} variant='h2' component='h2'>Country Detail </Typography>
+             <Typography sx={{textAlign:'center'}} variant='body1' >We made it easy for you to know more about your favorite countries!!!</Typography>
              <Box sx={{display:'flex', justifyContent:'center', my:5}}>
                 <Paper
                         component="form"
@@ -28,9 +27,9 @@ const Home = () => {
                         </IconButton>
                     </Paper>
              </Box>
+             
         </Container>
-        
-    </div>
+    </>
   )
 }
 
