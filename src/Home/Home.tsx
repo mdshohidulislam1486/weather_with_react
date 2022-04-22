@@ -9,19 +9,18 @@ import Country from '../Country';
 const Home: React.FC = () => {
 
 const [countries, setCountries] = useState<any[]>([])
+const [newCountry, setNewCountry] = useState<any[]>([])
 const [search, setSearch] = useState<String>('')
 const [error, setError] = useState(null)
-const [newCountry, setNewCountry] = useState<any[]>([])
 
 
-console.log(error)
+
 
  const handleSearch = () => {
-  const newArray = countries.filter(c => c.name.common = search )
+  const newArray = countries.filter(c => c.name.common.toLowerCase().includes(search))
   setNewCountry(newArray)
  }
 
- console.log(countries)
  useEffect(()=> {
   fetch(`https://restcountries.com/v3.1/name/${search}`)
   .then(res =>{ if(!res.ok){
@@ -32,7 +31,7 @@ console.log(error)
   })
     .then(data =>{
       setNewCountry([])
-      setCountries(data?.slice(-1))
+      setCountries(data)
       setError(null)
     }
   )
