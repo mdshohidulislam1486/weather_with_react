@@ -24,13 +24,14 @@ const [error, setError] = useState(null)
  useEffect(()=> {
   fetch(`https://restcountries.com/v3.1/name/${search}`)
   .then(res =>{ if(!res.ok){
+
     throw Error('No data found')
-  }
+    
+    }
   return res.json()
   
   })
     .then(data =>{
-      setNewCountry([])
       setCountries(data)
       setError(null)
     }

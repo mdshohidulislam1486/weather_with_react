@@ -28,12 +28,11 @@ const Weather:React.FC = () => {
 const [weather, setWeather] = useState<CityWeather | null>(null)
 const [error, setError] = useState(null)
  
-console.log(weather)
 const {id} = useParams<HistoryParams>()
-console.log(id)
+
 
 useEffect(() => {
-    fetch(`http://api.weatherstack.com/current?access_key=a45ad937fc4753c20fe390d243375273&query=${id}`)
+    fetch(`http://api.weatherstack.com/current?access_key=9e14cf899996af9f64d9c488325e8f05&query=${id}`)
     .then(res =>{ if(!res.ok){
         throw Error('No weather data found, please check again')
       }

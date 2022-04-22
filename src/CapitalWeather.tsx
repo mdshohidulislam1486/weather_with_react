@@ -18,8 +18,7 @@ const CapitalWeather:React.FC<Props> = ({cityPrecip, weatherIcon, cityWind, coun
     <>
     <Container>
         <Box sx={{textAlign:'center'}}>
-          <Typography sx={{color:'#fff'}}>City Name: {cityName}</Typography>
-          <Typography color='#fff'> {countryName}</Typography>
+          <Typography sx={{color:'#fff',my:3}}>City Name: {cityName}</Typography>
           <img src={weatherIcon?.slice(0,1)} alt={cityName} />
           
        </Box>
