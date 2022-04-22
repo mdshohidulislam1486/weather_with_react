@@ -10,8 +10,8 @@ type HistoryParams ={
 }
 interface CityWeather {
   location:{
-    country:string;
-    name:string;
+    country?:string;
+    name?:string;
   },
   current:{
     temperature:number;
@@ -52,7 +52,7 @@ useEffect(() => {
   return (
     <Box  sx={{height:'100vh', width:'100%', backgroundColor:'#171717'}}> 
     <Container>
-        <Typography color='#fff' variant='h3' sx={{fontWeight:600, textAlign:'center', py:5}}>{weather?.location.country}</Typography>
+        <Typography color='#fff' variant='h3' sx={{fontWeight:600, textAlign:'center', py:5}}>{weather?.location?.country}</Typography>
         <Typography sx={{textAlign:'center'}} color='#FFF'>Know More about todays Weather</Typography>
         
         <Box>

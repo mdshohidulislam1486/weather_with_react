@@ -17,7 +17,7 @@ const [error, setError] = useState(null)
 
 
  const handleSearch = () => {
-  const newArray = countries.filter(c => c.name.common.toLowerCase().includes(search))
+  const newArray = countries.filter(c => c.name.common.toLowerCase().includes(search.toLowerCase()))
   setNewCountry(newArray)
  }
 
