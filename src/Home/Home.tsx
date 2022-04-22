@@ -39,13 +39,9 @@ console.log(error)
   .catch(err => {
     setError(err.message);
   });
-  setNewCountry([])
  }, [search])
 
-/* const handleOnclick = () =>{
-  const usemyText = search;
-  setNewSearch(usemyText)
-} */
+
 
 
   return (

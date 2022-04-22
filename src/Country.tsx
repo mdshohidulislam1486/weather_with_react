@@ -1,5 +1,6 @@
 import { Button, Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material';
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 
 
@@ -36,8 +37,10 @@ const Country:React.FC<Props> = ({cName, population, capital, latlng, flags}:Pro
                 Latitude : {latlng?.slice(0, 1)} Longitude: {latlng?.slice(1, 2)}
               </Typography>
             </CardContent>
-          <CardActions>
-            <Button size="small">{capital} weather now</Button>
+          <CardActions >
+            <Link to={`/weather/${capital}`}>
+              <Button size="small">{capital} weather now</Button>
+            </Link>
           </CardActions>
       </Card>
   )
