@@ -5,40 +5,41 @@ import './Home.css'
 import Country from '../Country';
 
 
-interface HomePost {
-
-}
 
 const Home: React.FC = () => {
 
 const [countries, setCountries] = useState<any[]>([])
 const [search, setSearch] = useState<String>('')
-const [newCountries, setNewCountries] = useState<any[]>([])
 const [error, setError] = useState(null)
+const [newCountry, setNewCountry] = useState<any[]>([])
+
 
 console.log(error)
 
  const handleSearch = () => {
-  
+  const newArray = countries.filter(c => c.name.common = search )
+  setNewCountry(newArray)
  }
 
  console.log(countries)
  useEffect(()=> {
   fetch(`https://restcountries.com/v3.1/name/${search}`)
   .then(res =>{ if(!res.ok){
-    throw Error('Cound not fetch data')
+    throw Error('No data found')
   }
   return res.json()
   
   })
-  .then(data =>{
-    setCountries(data)
-  }
-)
+    .then(data =>{
+      setNewCountry([])
+      setCountries(data?.slice(-1))
+      setError(null)
+    }
+  )
   .catch(err => {
     setError(err.message);
   });
-  setCountries([])
+  setNewCountry([])
  }, [search])
 
 /* const handleOnclick = () =>{
@@ -57,8 +58,7 @@ console.log(error)
 
             <Box sx={{display:'flex', justifyContent:'center', my:5}}>
                 <Paper
-                      component="form"
-                        onSubmit={handleSearch}
+   
                        /*  onClick={handleOnclick} */
                         sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 400 }}
                         >
@@ -69,19 +69,23 @@ console.log(error)
                             placeholder="Search your favorite country"
                             inputProps={{ 'aria-label': 'Search your favorite country' }}
                         />
-                        <Button disabled={!search}  variant='contained' size='small' type="submit" sx={{ p: '10px' }} aria-label="search">
+                        <Button onClick={handleSearch} disabled={!search}  variant='contained' size='small' type="button" sx={{ p: '10px' }} aria-label="search">
                             Submit
                         </Button>
                     </Paper>
             </Box>
-            <Box>
-              {
-                countries?.map(c => (<Country key={c?.population} cName={c?.name?.common} age={c?.population}>
+            <Box sx={{display:'flex', justifyContent:'center'}}>
+                {
+                  error ? <Typography>{error}</Typography> : <Box>
+                  {
+                    newCountry?.map(c => (<Country key={c?.population} cName={c?.name?.common} population={c?.population} capital={c.capital} latlng={c?.latlng} flags={c?.flags.png}>
 
-                </Country>))
-              }
+                    </Country>))
+                  }
+                </Box>
+                }
+            
             </Box>
-
         </Container>
     </>
   )
