@@ -1,5 +1,4 @@
 import { Box, Button, Container, Divider, Grid, IconButton, InputBase, Paper, Typography } from '@mui/material'
-import SearchIcon from '@mui/icons-material/Search';
 import React, { FormEvent, useEffect, useState } from 'react'
 import './Home.css'
 import Country from '../Country';
@@ -21,26 +20,30 @@ const [error, setError] = useState(null)
   setNewCountry(newArray)
  }
 
- useEffect(()=> {
-  fetch(`https://restcountries.com/v3.1/name/${search}`)
-  .then(res =>{ if(!res.ok){
-
-    throw Error('No data found')
+ try
+ {
+  useEffect(()=> {
+    fetch(`https://restcountries.com/v3.1/name/${search}`)
+    .then(res =>{ if(!res?.ok){
+      throw Error('No data found')
+      
+      }
+       return res.json()
     
-    }
-  return res.json()
-  
-  })
-    .then(data =>{
-      setCountries(data)
-      setError(null)
-    }
-  )
-  .catch(err => {
-    setError(err.message);
-  });
- }, [search])
-
+    })
+      .then(data =>{
+        setCountries(data)
+        setError(null)
+      }
+    )
+    .catch(err => {
+      setError(err.message);
+    });
+   }, [search])
+ }
+catch(e){
+ console.log(e)
+}
 
 
 
