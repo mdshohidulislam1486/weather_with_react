@@ -1,6 +1,7 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import Home from './Home'
+import { InputBaseProps } from '@mui/material';
 
 
 test('renders learn react link', () => {
@@ -18,18 +19,30 @@ test('renders learn react link', () => {
     expect(input).toBeInTheDocument();
   });
 
-  it("get country from  api", async ()=> {
-    const fetchAny = fetch as any
-    fetchAny.mockResponseOnce(JSON.stringify({data}))
+  test('Get the serch country text in the input', () => {
+    render(<Home/>); 
+    const conutnryInput = screen.getByPlaceholderText(/Search your favorite country/i);
+    expect(conutnryInput).toBeInTheDocument()
+  } )
 
-    
-    expect(fetch).toHaveBeenCalledTimes(1);
-    expect(fetch).toHaveBeenCalledWith(
-      `https://restcountries.com/v3.1/name/bangladesh`
-    );
-  });
-  
-  
-function data(data: any[]): any {
-  throw new Error('Function not implemented.');
-}
+  test('Get the serch country input text and change and get the chnging values', () => {
+    render(<Home/>); 
+    const conutnryInput = screen.getByPlaceholderText(/Search your favorite country/i) as HTMLInputElement;
+    const testValue = 'test'
+    fireEvent.change(conutnryInput, {target:{value:testValue}})
+    expect(conutnryInput.value).toBe(testValue) 
+  } )
+
+  test('Button should be disabled before typing anything', ()=> {
+    render(<Home/>);
+    const submitButton = screen.getByRole('button')
+    expect(submitButton).toBeDisabled();
+  })
+  test('Button will be enabled as soon as we start writing country name', ()=> {
+    render(<Home/>);
+    const submitButton = screen.getByRole('button')
+    const conutnryInput = screen.getByPlaceholderText(/Search your favorite country/i) as HTMLInputElement;
+    const testValue = 'test'
+    fireEvent.change(conutnryInput, {target: {value: testValue}})
+    expect(submitButton).toBeEnabled();
+  })

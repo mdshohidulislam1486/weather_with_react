@@ -14,7 +14,6 @@ const [error, setError] = useState(null)
 
 
 
-
  const handleSearch = () => {
   const newArray = countries.filter(c => c.name.common.toLowerCase().includes(search.toLowerCase()))
   setNewCountry(newArray)
@@ -67,6 +66,7 @@ catch(e){
                             onChange={(e) => setSearch(e.target.value)}
                             placeholder="Search your favorite country"
                             inputProps={{ 'aria-label': 'Search your favorite country' }}
+                            defaultValue={search}
                         />
                         <Button onClick={handleSearch} disabled={!search}  variant='contained' size='small' type="button" sx={{ p: '10px' }} aria-label="search">
                             Submit
