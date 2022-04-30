@@ -2,7 +2,7 @@ import React from 'react';
 import { act, render, screen, cleanup, fireEvent, waitFor} from '@testing-library/react';
 import App from './App';
 import AxiosMock from 'axios'
-import { url } from 'inspector';
+import { url } from 'inspector'; 
 import {setupServer} from 'msw/node'
 import { rest } from 'msw';
 import Home from './Home/Home';
@@ -24,15 +24,3 @@ test('renders learn react link', () => {
     success: false, error: 'Something bad happened'
     }])
 }) )as jest.Mock */
-
-const server = setupServer(
-  rest.get('/greeting', (req, res, ctx) => {
-    return res(ctx.json({greeting: 'hello there'}))
-  }),
-)
-
-beforeAll(() => server.listen())
-afterEach(() => server.resetHandlers())
-afterAll(() => server.close())
-
-

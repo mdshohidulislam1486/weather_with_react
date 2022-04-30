@@ -32,7 +32,7 @@ const [error, setError] = useState(null)
    }, [search])
  }
 catch(e){
- console.log(e)
+    console.log(e)
 }
 
 
