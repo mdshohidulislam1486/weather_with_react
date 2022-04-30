@@ -24,7 +24,7 @@ const Country:React.FC<Props> = ({cName, population, capital, latlng, flags}:Pro
             alt={cName}
           />
             <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
+              <Typography data-testid='name' gutterBottom variant="h5" component="div">
                 {cName}
               </Typography>
               <Typography variant="body1" color="text.secondary">

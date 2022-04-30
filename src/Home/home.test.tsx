@@ -1,7 +1,9 @@
 import React from 'react';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import Home from './Home'
 import { InputBaseProps } from '@mui/material';
+import App from '../App';
+
 
 
 test('renders learn react link', () => {
@@ -11,7 +13,6 @@ test('renders learn react link', () => {
 });
  
 
-
   test('find the submit button', () => {
     render(<Home />);
     const input = screen.getByText(/Submit/i);
@@ -19,13 +20,14 @@ test('renders learn react link', () => {
     expect(input).toBeInTheDocument();
   });
 
+
   test('Get the serch country text in the input', () => {
     render(<Home/>); 
     const conutnryInput = screen.getByPlaceholderText(/Search your favorite country/i);
     expect(conutnryInput).toBeInTheDocument()
   } )
 
-  test('Get the serch country input text and change and get the chnging values', () => {
+  test('Get the serch country input text and its changing value', () => {
     render(<Home/>); 
     const conutnryInput = screen.getByPlaceholderText(/Search your favorite country/i) as HTMLInputElement;
     const testValue = 'test'
@@ -38,6 +40,13 @@ test('renders learn react link', () => {
     const submitButton = screen.getByRole('button')
     expect(submitButton).toBeDisabled();
   })
+  test('First we will load the data', ()=> {
+    render(<Home/>);
+    const submitButton = screen.getByRole('button')
+    expect(submitButton).not.toHaveTextContent(/Loding/i)
+  })
+
+ 
   test('Button will be enabled as soon as we start writing country name', ()=> {
     render(<Home/>);
     const submitButton = screen.getByRole('button')
@@ -46,3 +55,7 @@ test('renders learn react link', () => {
     fireEvent.change(conutnryInput, {target: {value: testValue}})
     expect(submitButton).toBeEnabled();
   })
+ 
+
+
+  

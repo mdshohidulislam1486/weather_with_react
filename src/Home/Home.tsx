@@ -22,22 +22,13 @@ const [error, setError] = useState(null)
  try
  {
   useEffect(()=> {
-    fetch(`https://restcountries.com/v3.1/name/${search}`)
-    .then(res =>{ if(!res?.ok){
-      throw Error('No data found')
-      
-      }
-       return res.json()
-    
-    })
-      .then(data =>{
-        setCountries(data)
-        setError(null)
-      }
-    )
-    .catch(err => {
-      setError(err.message);
-    });
+    const fetchData = async () => {
+      const data = await fetch(
+        `https://restcountries.com/v3.1/name/${search}`
+      ).then((res) => res.json());
+      setCountries(data)
+    };
+    fetchData();
    }, [search])
  }
 catch(e){
@@ -73,7 +64,8 @@ catch(e){
                         </Button>
                     </Paper>
             </Box>
-            <Box sx={{display:'flex', justifyContent:'center'}}>
+            <Box data-testid='name' sx={{display:'flex', justifyContent:'center'}}>
+            
                 {
                   error ? <Typography>{error}</Typography> : <Box>
                   {
