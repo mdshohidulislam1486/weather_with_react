@@ -14,12 +14,22 @@ const [error, setError] = useState(null)
 
 
 
+
  const handleSearch = () => {
-  const newArray = countries.filter(c => c.name.common.toLowerCase().includes(search.toLowerCase()))
-  setNewCountry(newArray)
+/*   const newArray = countries.filter(c => c.name.altSpellings.toLowerCase().includes(search.toLowerCase())) */
+  const url = `https://restcountries.com/v3.1/name/${search}`
+        fetch(url)
+        .then(res => res.json())
+        .then(data => {
+          if(data.length===0){
+            setCountries([...countries])
+          }
+          setCountries(data)
+        })
+        console.log(countries)
  }
 
- try
+ /* try
  {
   useEffect(()=> {
     const fetchData = async () => {
@@ -34,7 +44,7 @@ const [error, setError] = useState(null)
 catch(e){
     console.log(e)
 }
-
+ */
 
 
   return (
@@ -69,7 +79,7 @@ catch(e){
                 {
                   error ? <Typography>{error}</Typography> : <Box>
                   {
-                    newCountry?.map(c => (<Country key={c?.population} cName={c?.name?.common} population={c?.population} capital={c.capital} latlng={c?.latlng} flags={c?.flags.png}>
+                    countries?.map(c => (<Country key={c?.population} cName={c?.name?.common} population={c?.population} capital={c.capital} latlng={c?.latlng} flags={c?.flags.png}>
 
                     </Country>))
                   }
