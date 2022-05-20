@@ -23,7 +23,6 @@ const Home: React.FC = () => {
           .then(data => {
             if(data.length>0){
               setCountries(data)
-              
             }
             else{
               setError(true)

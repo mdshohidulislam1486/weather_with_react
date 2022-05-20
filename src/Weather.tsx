@@ -48,7 +48,7 @@ useEffect(() => {
     });
 }, [])
 
-console.log(weather)
+
 
   return (
     <Box  sx={{height:'100vh', width:'100%', backgroundColor:'#171717'}}> 
