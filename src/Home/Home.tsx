@@ -7,27 +7,32 @@ import Country from '../Country';
 
 const Home: React.FC = () => {
 
-const [countries, setCountries] = useState<any[]>([])
-const [newCountry, setNewCountry] = useState<any[]>([])
-const [search, setSearch] = useState<String>('')
-const [error, setError] = useState(null)
-
-
-
-
- const handleSearch = () => {
-/*   const newArray = countries.filter(c => c.name.altSpellings.toLowerCase().includes(search.toLowerCase())) */
-  const url = `https://restcountries.com/v3.1/name/${search}`
-        fetch(url)
-        .then(res => res.json())
-        .then(data => {
-          if(data.length===0){
-            setCountries([...countries])
-          }
-          setCountries(data)
-        })
-        console.log(countries)
- }
+  const [countries, setCountries] = useState<any[]>([])
+  const [newCountry, setNewCountry] = useState<any[]>([])
+  const [search, setSearch] = useState<String>('')
+  const [error, setError] = useState(false)
+  
+  
+  
+  
+   const handleSearch = () => {
+    
+    const url = `https://restcountries.com/v3.1/name/${search}`
+          fetch(url)
+          .then(res => res.json())
+          .then(data => {
+            if(data.length>0){
+              setCountries(data)
+              
+            }
+            else{
+              setError(true)
+              setCountries([])
+              return
+            }
+          })
+          setError(false)
+   }
 
  /* try
  {
@@ -77,7 +82,7 @@ catch(e){
             <Box data-testid='name' sx={{display:'flex', justifyContent:'center'}}>
             
                 {
-                  error ? <Typography>{error}</Typography> : <Box>
+                  error ? <Typography sx={{color:'red'}}>No data found!!</Typography> : <Box>
                   {
                     countries?.map(c => (<Country key={c?.population} cName={c?.name?.common} population={c?.population} capital={c.capital} latlng={c?.latlng} flags={c?.flags.png}>
 
