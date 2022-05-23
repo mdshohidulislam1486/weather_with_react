@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { Box, Button, Container, Typography } from '@mui/material'
 import CapitalWeather from './CapitalWeather'
+import { isCallSignatureDeclaration } from 'typescript'
 
 
 
@@ -31,7 +32,9 @@ const [error, setError] = useState(null)
 const {id} = useParams<HistoryParams>()
 
 
+
 useEffect(() => {
+  let isCancelled:boolean = false;
     fetch(`http://api.weatherstack.com/current?access_key=9e14cf899996af9f64d9c488325e8f05&query=${id}`)
     .then(res =>{ if(!res.ok){
         throw Error('No weather data found, please check again')
@@ -39,13 +42,19 @@ useEffect(() => {
       return res.json()
     })
     .then(data =>{
-        setWeather(data)
-        setError(null)
-      }
+        if(!isCancelled){
+          setWeather(data)
+          setError(null)
+        }
+      } 
     )
     .catch(err => {
       setError(err.message);
     });
+    return () => {
+      isCancelled = true
+    };
+    
 }, [])
 
 

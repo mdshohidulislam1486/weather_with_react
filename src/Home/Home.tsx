@@ -33,24 +33,6 @@ const Home: React.FC = () => {
           setError(false)
    }
 
- /* try
- {
-  useEffect(()=> {
-    const fetchData = async () => {
-      const data = await fetch(
-        `https://restcountries.com/v3.1/name/${search}`
-      ).then((res) => res.json());
-      setCountries(data)
-    };
-    fetchData();
-   }, [search])
- }
-catch(e){
-    console.log(e)
-}
- */
-
-
   return (
     <>
        <Container>
@@ -69,7 +51,7 @@ catch(e){
                         <InputBase
                             sx={{ ml: 1, flex: 1 }}
                             onChange={(e) => setSearch(e.target.value)}
-                            placeholder="Search your favorite country"
+                            placeholder="Enter country"
                             inputProps={{ 'aria-label': 'Search your favorite country' }}
                             defaultValue={search}
                         />

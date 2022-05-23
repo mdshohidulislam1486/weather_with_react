@@ -39,7 +39,7 @@ const Country:React.FC<Props> = ({cName, population, capital, latlng, flags}:Pro
             </CardContent>
           <CardActions >
             <Link style={{textDecoration:"none"}} to={`/weather/${capital}`}>
-              <Button size="small">{capital} weather now</Button>
+              <Button variant='contained' color="primary" sx={{color:'#000', textTransform:"capitalize", fontWeight:800, fontSize:'1em'}} size="small">Capital Weather</Button>
             </Link>
           </CardActions>
       </Card>
