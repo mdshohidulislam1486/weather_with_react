@@ -1,8 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { Box, Button, Container, Typography } from '@mui/material'
 import CapitalWeather from './CapitalWeather'
-import { isCallSignatureDeclaration } from 'typescript'
+
 
 
 
@@ -27,7 +28,7 @@ interface CityWeather {
 
 const Weather:React.FC = () => {
 const [weather, setWeather] = useState<CityWeather | null>(null)
-const [error, setError] = useState(null)
+const [, setError] = useState(null)
  
 const {id} = useParams<HistoryParams>()
 
@@ -56,7 +57,6 @@ useEffect(() => {
     };
     
 }, [])
-
 
 
   return (

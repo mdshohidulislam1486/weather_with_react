@@ -1,5 +1,5 @@
-import { Box, Button, Container, Divider, Grid, IconButton, InputBase, Paper, Typography } from '@mui/material'
-import React, { FormEvent, useEffect, useState } from 'react'
+import { Box, Button, Container, InputBase, Paper, Typography } from '@mui/material'
+import React, {  useState } from 'react'
 import './Home.css'
 import Country from '../Country';
 
@@ -8,7 +8,6 @@ import Country from '../Country';
 const Home: React.FC = () => {
 
   const [countries, setCountries] = useState<any[]>([])
-  const [newCountry, setNewCountry] = useState<any[]>([])
   const [search, setSearch] = useState<String>('')
   const [error, setError] = useState(false)
   

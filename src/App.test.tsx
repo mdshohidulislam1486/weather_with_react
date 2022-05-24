@@ -1,16 +1,8 @@
 import React from 'react';
-import { act, render, screen, cleanup, fireEvent, waitFor} from '@testing-library/react';
+import { render, screen} from '@testing-library/react';
 import App from './App';
-import AxiosMock from 'axios'
-import { url } from 'inspector'; 
-import {setupServer} from 'msw/node'
-import { rest } from 'msw';
-import Home from './Home/Home';
-import Country from './Country';
 
-interface URL {
-  url:any
-}
+
 test('renders learn react link', () => {
   render(<App />);
   const initTest = screen.getByText(/Country Detail/i);

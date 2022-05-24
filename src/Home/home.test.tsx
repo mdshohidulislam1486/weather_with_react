@@ -1,8 +1,6 @@
 import React from 'react';
-import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen,  } from '@testing-library/react';
 import Home from './Home'
-import { InputBaseProps } from '@mui/material';
-import App from '../App';
 
 
 
