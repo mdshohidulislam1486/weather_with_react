@@ -21,13 +21,13 @@ test('renders learn react link', () => {
 
   test('Get the serch country text in the input', () => {
     render(<Home/>); 
-    const conutnryInput = screen.getByPlaceholderText(/Search your favorite country/i);
+    const conutnryInput = screen.getByPlaceholderText(/Enter Country/i);
     expect(conutnryInput).toBeInTheDocument()
   } )
 
   test('Get the serch country input text and its changing value', () => {
     render(<Home/>); 
-    const conutnryInput = screen.getByPlaceholderText(/Search your favorite country/i) as HTMLInputElement;
+    const conutnryInput = screen.getByPlaceholderText(/Enter Country/i) as HTMLInputElement;
     const testValue = 'test'
     fireEvent.change(conutnryInput, {target:{value:testValue}})
     expect(conutnryInput.value).toBe(testValue) 
@@ -48,7 +48,7 @@ test('renders learn react link', () => {
   test('Button will be enabled as soon as we start writing country name', ()=> {
     render(<Home/>);
     const submitButton = screen.getByRole('button')
-    const conutnryInput = screen.getByPlaceholderText(/Search your favorite country/i) as HTMLInputElement;
+    const conutnryInput = screen.getByPlaceholderText(/Enter Country/i) as HTMLInputElement;
     const testValue = 'test'
     fireEvent.change(conutnryInput, {target: {value: testValue}})
     expect(submitButton).toBeEnabled();

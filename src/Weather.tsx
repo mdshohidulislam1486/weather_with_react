@@ -70,7 +70,7 @@ useEffect(() => {
 
         </Box>
           <Link style={{textDecoration:"none", marginTop:30, display:'flex', justifyContent:'center'}} to='/'>
-              <Button  sx={{textAlign:'center'}} variant='contained'> Home </Button>
+              <Button type="button"  sx={{textAlign:'center'}} variant='contained'> Home </Button>
           </Link>
     </Container>
     </Box>

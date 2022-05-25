@@ -30,7 +30,7 @@ const Home: React.FC = () => {
             }
           })
           setError(false)
-   }
+   } 
 
   return (
     <>
