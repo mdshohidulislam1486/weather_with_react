@@ -9,5 +9,12 @@ test('find a line in the documents', () => {
     expect(findData).toBeInTheDocument();
   });
 
+test('Capital weather page home return button exist', () => {
+    render(<CapitalWeather/>);
+    const findData = screen.getByText(/City Name/i);
+    expect(findData).toBeInTheDocument();
+  });
 
+
+  
   

@@ -14,12 +14,11 @@ test('renders learn react link', () => {
   test('find the submit button', () => {
     render(<Home />);
     const input = screen.getByText(/Submit/i);
-  
     expect(input).toBeInTheDocument();
   });
 
 
-  test('Get the serch country text in the input', () => {
+  test('Get the country text in the input', () => {
     render(<Home/>); 
     const conutnryInput = screen.getByPlaceholderText(/Enter Country/i);
     expect(conutnryInput).toBeInTheDocument()
@@ -38,13 +37,7 @@ test('renders learn react link', () => {
     const submitButton = screen.getByRole('button')
     expect(submitButton).toBeDisabled();
   })
-  test('First we will load the data', ()=> {
-    render(<Home/>);
-    const submitButton = screen.getByRole('button')
-    expect(submitButton).not.toHaveTextContent(/Loding/i)
-  })
 
- 
   test('Button will be enabled as soon as we start writing country name', ()=> {
     render(<Home/>);
     const submitButton = screen.getByRole('button')
@@ -54,6 +47,14 @@ test('renders learn react link', () => {
     expect(submitButton).toBeEnabled();
   })
  
-
+  test('Make a mock call and get all data', ()=> {
+    render(<Home/>);
+    const submitButton = screen.getByRole('button')
+    const conutnryInput = screen.getByPlaceholderText(/Enter Country/i) as HTMLInputElement;
+    const testValue = 'test'
+    fireEvent.change(conutnryInput, {target: {value: testValue}})
+    expect(submitButton).toBeEnabled();
+  })
+ 
 
   
