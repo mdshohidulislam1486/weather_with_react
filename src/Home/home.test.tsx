@@ -1,7 +1,10 @@
 import React from 'react';
 import { fireEvent, render, screen,  } from '@testing-library/react';
 import Home from './Home'
-const {loadName} = require('./Home')
+import printName from './Home'
+import handleSearch from './Home'
+import Country from '../Country';
+import { BrowserRouter } from 'react-router-dom';
 
 
 
@@ -53,16 +56,30 @@ test('renders learn react link', () => {
     render(<Home/>);
     const submitButton = screen.getByRole('button')
     const conutnryInput = screen.getByPlaceholderText(/Enter Country/i) as HTMLInputElement;
-    const testValue = 'Bangladesh'
+    const testValue = 'Bangladesh' 
     submitButton.click()
     fireEvent.change(conutnryInput, {target: {value: testValue}})
     expect(submitButton).toBeEnabled();
-  })
+  }) 
  
 
- test('Mock my home api call', ()=>{
+/*  test('Mock my home api call', ()=>{
   // eslint-disable-next-line jest/valid-expect-in-promise
-  loadName().then((name: any) => { 
-    expect(name).tobe('Bangladesh')
+  printName().then((name: any) => { 
+    expect(name).toBe('Bangladesh')
   })
+ }) 
+  */
+
+ 
+ describe("<Country/>", () =>{
+  const handleSearch  = jest.fn()
+  const country =  {name:'Bangladesh', flag:'https:/webapp.png', lng:"lng"}
+  const {queryByText} = render(<BrowserRouter><Country cName={country.name} flags={country.flag}/></BrowserRouter>)
+  // eslint-disable-next-line testing-library/prefer-screen-queries
+  
+  render(<Home/>)
+  const button = screen.getByText(/Submit/i)
+  fireEvent.click(button)
+  expect(handleSearch).toBeCalledTimes(1)
  }) 

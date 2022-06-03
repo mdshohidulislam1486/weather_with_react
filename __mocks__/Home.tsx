@@ -34,4 +34,4 @@
         })
    }
 
-   exports.printName = loadName;
+   export default  handleSearch;

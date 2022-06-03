@@ -54,7 +54,7 @@ const Home: React.FC = () => {
                             inputProps={{ 'aria-label': 'Search your favorite country' }}
                             defaultValue={search}
                         />
-                        <Button onClick={handleSearch} disabled={!search}  variant='contained' size='small' type="button" sx={{ p: '10px' }} aria-label="search">
+                        <Button onClick={handleSearch} test-id="custom-element" disabled={!search}  variant='contained' size='small' type="button" sx={{ p: '10px' }} aria-label="search">
                             Submit
                         </Button>
                     </Paper>
