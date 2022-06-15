@@ -57,8 +57,7 @@ test('get the home page on call', () => {
   })
  
   test('Make a mock call and get all data', ()=> {
-    const country =  {name:'Bangladesh', flag:'https:/webapp.png', lng:"lng"}
-    const {queryByText} = render(<BrowserRouter><Country cName={country.name} flags={country.flag}/></BrowserRouter>)
+  
     
     render(<Home/>);
     const submitButton = screen.getAllByRole('button')[0] as HTMLAnchorElement
