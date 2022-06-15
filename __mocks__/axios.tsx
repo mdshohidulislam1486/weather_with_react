@@ -4,4 +4,4 @@ const get= ()=>{
     });
 }
 
-exports.get = get;
+export default get;
