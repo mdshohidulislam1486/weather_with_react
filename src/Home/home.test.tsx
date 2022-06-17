@@ -56,76 +56,30 @@ test('get the home page on call', () => {
     expect(submitButton).toBeEnabled();
   })
  
-  test('Make a mock call and get all data', ()=> {
+  test('On Click get country data from api', async ()=> {
   
-    
     render(<Home/>);
     const submitButton = screen.getAllByRole('button')[0] as HTMLAnchorElement
     const conutnryInput = screen.getByPlaceholderText(/Enter Country/i) as HTMLInputElement;
-    const testValue = 'Bangladesh' 
-    submitButton.click()
+    const testValue = 'bd' 
     fireEvent.change(conutnryInput, {target: {value: testValue}})
-   
+    userEvent.click(submitButton)
     expect(submitButton).toBeEnabled();
     expect(submitButton).toBeEnabled();
-    
-    
-  
-  })  
-
-/*  test('Mock my home api call', ()=>{
-  // eslint-disable-next-line jest/valid-expect-in-promise
-  printName().then((name: any) => { 
-    expect(name).toBe('Bangladesh')
-  }) 
- }) 
-  */
- 
-/*  describe("<Country/>",  () =>{
-  
-  const country =  {name:'Bangladesh', flag:'https:/webapp.png', lng:"lng"}
-  const {queryByText} = render(<BrowserRouter><Country cName={country.name} flags={country.flag}/></BrowserRouter>)
-  
-  render(<Home/>) 
-  
-   
-    const {result}:any = render(<Home/>)
-    act(() =>{
-     result.current.handelSearch()
-    })
-
-   expect(handleSearch).toBeCalledTimes(1) 
- 
-
- }) 
- */
- interface Props{
-  name: string;
-  email: string;
-}
+  })
 
 
  describe('Home button api call and testing library', () => {
   test('On clikc when the input is wrong show no data found', async() => {
-    render(<Home />);
+    render(<Home />); 
     const submitButton = screen.getByRole('button')
     const conutnryInput = screen.getByPlaceholderText(/Enter Country/i) as HTMLInputElement;
     const testValue = 'wronginput' 
-
-    // eslint-disable-next-line testing-library/no-unnecessary-act
-
     fireEvent.change(conutnryInput, {target: {value: testValue}})
     userEvent.click(submitButton);
-
-
     const capitalWeather = await screen.findByText(/No data found!!/i)
     expect(capitalWeather).toBeInTheDocument()
-  
-
     expect(submitButton).toBeEnabled();
     
   });
-
-
-
 }); 

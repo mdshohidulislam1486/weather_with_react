@@ -65,7 +65,6 @@ const Home: React.FC = () => {
                   error ? <Typography data-testid="data-search-fail" sx={{color:'red'}}>No data found!!</Typography> : <Box>
                   {
                     countries?.map(c => (<Country key={c?.population} cName={c?.name?.common} population={c?.population} capital={c.capital} latlng={c?.latlng} flags={c?.flags.png}>
-
                     </Country>))
                   }
                 </Box>
